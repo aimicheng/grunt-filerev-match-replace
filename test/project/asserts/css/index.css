@@ -1,0 +1,26 @@
+/* Absolute path */
+body { background: url(/asserts/images/bg.png); }
+
+/* Relative path */
+body { background: url(../images/bg.png); }
+body { background: url(../../asserts/images/bg.png); }
+
+/* Delimiters */
+body { background: url("/asserts/images/bg.png"); }
+body { background: url(/asserts/images/bg.png); }
+body { background: url( /asserts/images/bg.png    ); }
+body { background: url('/asserts/images/bg.png'); background: url("/asserts/images/bg.png"); }
+
+/* Escaped delimiters */
+body { content: "<img src=\"/asserts/images/osi.svg\" />"; }
+
+/* With query string and anchor */
+body { background: url('/asserts/images/bg.png?a=b'); }
+body { background: url('/asserts/images/bg.png#a'); }
+
+/* Invalid */
+body { background: url('bg.png'); }
+body { background: url('/asserts/images/bg'); }
+body { background: url('/asserts/images/bg.png.bak'); }
+body { background: url('/asserts/images/bg.gif'); }
+body { background: url('http://othersite.com/images/bg.png'); }

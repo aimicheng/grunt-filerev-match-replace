@@ -1,0 +1,24 @@
+doctype html
+html
+    head
+        meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+        title= page_title
+        link(rel="stylesheet" href=kzurl.res("/asserts/css/index.css"))
+        block head-meta
+    body
+        div
+            img(src="/asserts/images/osi.svg")
+        script(src=kzurl.res("http://othersite.com/res/lib/js/require.js"))
+        script.
+            require.config({
+                baseUrl: '/',
+                bundles: {
+                    'lib/bundle': ['zepto', 'mustache', 'react', 'react-dom', 'lib/ds-helper', 'lib/url']
+                },
+                paths: {
+                    'module-a': '/asserts/js/module-a',
+                    'module-b': '/asserts/js/module-b',
+                    'underscore': 'http://othersite.com/res/js/underscore-min'
+                }
+            });
+        script(src=kzurl.res("/asserts/js/index.js"))
