@@ -116,4 +116,4 @@ The return value above tells replace task that, `background: url(/asserts/images
 
 ## License
 
-[BSD license](http://opensource.org/licenses/bsd-license.php)
+[MIT license](http://opensource.org/licenses/bsd-license.php)

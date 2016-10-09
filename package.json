@@ -1,17 +1,38 @@
 {
   "name": "grunt-filerev-match-replace",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Replace assert references reversioned by filerev.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "chengliu<aimicheng@gmail.com>",
-  "license": "BSD",
+  "author": "chengliu <aimicheng@gmail.com>",
+  "licenses": "MIT",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-filerev": "^2.3.1",
     "grunt-filerev-assets": "^1.0.0",
     "load-grunt-tasks": "^3.5.2"
-  }
+  },
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-filerev": "^2.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aimicheng/grunt-filerev-match-replace.git"
+  },
+  "keywords": [
+    "grunt-filerev",
+    "asserts",
+    "reversion"
+  ],
+  "bugs": {
+    "url": "https://github.com/aimicheng/grunt-filerev-match-replace/issues"
+  },
+  "homepage": "https://github.com/aimicheng/grunt-filerev-match-replace#readme"
 }
