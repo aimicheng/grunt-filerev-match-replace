@@ -1,13 +1,12 @@
 {
   "name": "grunt-filerev-match-replace",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Replace assert references reversioned by filerev.",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "chengliu<aimicheng@gmail.com>",
-  "license": "ISC",
+  "license": "BSD",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
