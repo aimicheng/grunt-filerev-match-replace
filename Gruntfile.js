@@ -14,7 +14,6 @@ module.exports = function (grunt) {
         'pug-script-analyzer',
         'pug-image-analyzer'
     ];
-    //analyzers.push(require('./lib/analyzers/js-requirejs-define-analyzer'));
 
     // Project configuration.
     grunt.initConfig({
@@ -50,20 +49,6 @@ module.exports = function (grunt) {
                     analyzers: analyzers,
                     webroot: "dest/" //which dir is considers as root '/'
                 }
-            }
-        },
-        filerev_replace: {
-            options: {
-                assets_root: 'res/'
-            },
-            compiled_assets: {
-                src: 'dest/res/**/*.{css,js}'
-            },
-            views: {
-                options: {
-                    assets_root: 'res'
-                },
-                src: 'dest/views/**/*.pug'
             }
         }
     });

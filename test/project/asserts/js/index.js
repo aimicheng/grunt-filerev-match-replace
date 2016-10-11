@@ -9,7 +9,7 @@ define('test2', ['/asserts/js/module-a.js'], function(module_a) {
 });
 
 //double qutes
-define('test3', ["/asserts/js/module-a"], function(module_a) {
+define('test3', ["module_a"], function(module_a) {
 
 });
 

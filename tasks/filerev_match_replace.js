@@ -1,34 +1,8 @@
 'use strict';
 var path = require('path');
-
-//normolize relative url to absolute url
-function normolize_url(url, current_path) {
-    url = url.trim().replace(/(^['"]|['"]$)/g, '');
-    if (!path.isAbsolute(url)) {
-        url = path.normalize(current_path + '/' + url)
-    }
-    //remove query string & hash tag
-    url = url.replace(/[#?].*$/g, '');
-    return url;
-}
-
-//convert file path to url according on webroot
-function filepath_2_url(filepath, webroot) {
-    var url = filepath;
-    if (filepath.startsWith(webroot)) {
-         url = filepath.replace(webroot, '');
-    }
-    url.replace("\\", '/');
-    if (!url.startsWith('/')) {
-        url = '/' + url;
-    }
-    return url;
-}
-
-//get filename in file path
-function filename(filepath) {
-    return filepath.substr(filepath.lastIndexOf(path.sep) + 1);
-}
+var utils = require('../lib/utils'),
+    filename = utils.filename,
+    normolize_url = utils.normolize_url;
 
 //check analyzer object
 function is_analyzer_object(obj) {
@@ -57,8 +31,8 @@ module.exports = function(grunt) {
             });
         }
         for (var key in grunt.filerev.summary) {
-            var reversioned_path = filepath_2_url(grunt.filerev.summary[key], options.webroot);
-            key = filepath_2_url(key, options.webroot);
+            var reversioned_path = utils.filepath_2_url(grunt.filerev.summary[key], options.webroot);
+            key = utils.filepath_2_url(key, options.webroot);
             url_map[key] = {
                 origin: filename(key),
                 rev: filename(reversioned_path)
@@ -66,7 +40,7 @@ module.exports = function(grunt) {
         }
         this.files[0].src.forEach(function(view_src) {
             var view = grunt.file.read(view_src),
-                current_path = path.dirname(filepath_2_url(view_src, options.webroot)),
+                current_path = path.dirname(utils.filepath_2_url(view_src, options.webroot)),
                 changes = [],
                 filetype = path.extname(view_src).substr(1);
             analyzers.forEach(function(analyzer) {
