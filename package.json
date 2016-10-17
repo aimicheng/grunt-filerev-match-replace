@@ -1,6 +1,6 @@
 {
   "name": "grunt-filerev-match-replace",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Replace assert references reversioned by filerev.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

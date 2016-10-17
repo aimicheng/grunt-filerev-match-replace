@@ -53,9 +53,20 @@ module.exports = function(grunt) {
                 if (found) {
                     for(var key in found) {
                         var item = found[key];
-                        var url = normolize_url(item.origin_url, current_path);
-                        if (url_map[url]) {
-                            item.replace_url = item.origin_url.replace(url_map[url].origin, url_map[url].rev);
+                        var url = normolize_url(item.origin_url, current_path),
+                            replace_item;
+                        if (item.ext && !url.endsWith(item.ext)) {
+                            url = url + item.ext;
+                            replace_item = {
+                                origin: url_map[url].origin.replace(item.ext, ''),
+                                rev: url_map[url].rev.replace(item.ext, '')
+                            };
+                        } else {
+                            replace_item = url_map[url];
+                        }
+
+                        if (replace_item) {
+                            item.replace_url = item.origin_url.replace(replace_item.origin, replace_item.rev);
                             for (var i = 0; i < item.count; i++) {
                                 view = view.replace(key, key.replace(item.origin_url, item.replace_url));
                             }
