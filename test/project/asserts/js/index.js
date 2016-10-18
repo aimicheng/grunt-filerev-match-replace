@@ -1,5 +1,5 @@
 //absolute path without .js subfix
-define('test1', ['/asserts/js/module-a'], function(module_a) {
+define('test1', [am('/asserts/js/module-a')], function(module_a) {
 
 });
 

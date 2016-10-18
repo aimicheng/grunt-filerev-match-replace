@@ -15,6 +15,8 @@ module.exports = function (grunt) {
         'pug-image-analyzer'
     ];
 
+    analyzers.push(require('./lib/js-am-analyzer'));
+
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),

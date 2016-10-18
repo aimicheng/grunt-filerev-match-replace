@@ -54,23 +54,24 @@ module.exports = function(grunt) {
                     for(var key in found) {
                         var item = found[key];
                         var url = normolize_url(item.origin_url, current_path),
-                            replace_item;
-                        if (item.ext && !url.endsWith(item.ext)) {
-                            url = url + item.ext;
-                            replace_item = {
-                                origin: url_map[url].origin.replace(item.ext, ''),
-                                rev: url_map[url].rev.replace(item.ext, '')
-                            };
-                        } else {
-                            replace_item = url_map[url];
-                        }
+                            replace_item,
+                            real_url = normolize_url(item.real_url ? item.real_url : item.origin_url, current_path);
+                        replace_item = url_map[real_url];
 
                         if (replace_item) {
-                            item.replace_url = item.origin_url.replace(replace_item.origin, replace_item.rev);
-                            for (var i = 0; i < item.count; i++) {
-                                view = view.replace(key, key.replace(item.origin_url, item.replace_url));
+                            if (analyzer.replace) {
+                                item.replace_url = analyzer.replace(item, replace_item);
+                            } else {
+                                item.replace_url = item.origin_url.replace(replace_item.origin, replace_item.rev);
+                                item.replace_url = key.replace(item.origin_url, item.replace_url);
                             }
-                            changes.push(item);
+                            for (var i = 0; i < item.count; i++) {
+                                view = view.replace(key, item.replace_url);
+                            }
+                            changes.push({
+                                origin: key,
+                                rev: item.replace_url
+                            });
                         }
                     }
                 }
@@ -78,7 +79,7 @@ module.exports = function(grunt) {
             if (changes.length > 0) {
                 grunt.log.writeln('✔ '.green+ view_src);
                 changes.forEach(function(item) {
-                    grunt.log.writeln("\t"+ item.origin_url + ' => ' + item.replace_url);
+                    grunt.log.writeln("\t"+ item.origin + ' => ' + item.rev);
                 });
             }
             grunt.file.write(view_src, view);
