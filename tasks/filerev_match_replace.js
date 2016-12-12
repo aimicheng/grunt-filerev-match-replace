@@ -56,6 +56,11 @@ module.exports = function(grunt) {
                         var url = normolize_url(item.origin_url, current_path),
                             replace_item,
                             real_url = normolize_url(item.real_url ? item.real_url : item.origin_url, current_path);
+
+                        real_url=real_url.replace(/\\/g, '/');
+                        real_url=real_url.replace(/\/\//g, '/');
+                        var rooturl='/'+options.webroot.replace(/\//g,'').replace(/\\/g,'');
+                        real_url=real_url.replace(rooturl, '');
                         replace_item = url_map[real_url];
 
                         if (replace_item) {
